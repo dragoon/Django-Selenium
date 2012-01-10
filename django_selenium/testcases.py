@@ -54,13 +54,16 @@ class MyDriver(object):
         while page_source!=self.page_source:
             page_source = self.page_source
             time.sleep(1)
-        self.text = strip_tags(page_source)
+        self.update_text()
 
     def authorize(self, username, password):
         self.open_url(reverse('login'))
         self.type_in("#id_username", username)
         self.type_in("#id_password", password)
         self.click("#login-form input[type='submit']")
+
+    def update_text(self):
+        self.text = strip_tags(unicode(self.page_source))
 
     def open_url(self, url):
         self.get('http://%s:%d' % (self.testserver_host , self.testserver_port) + url)
@@ -103,7 +106,7 @@ class MyDriver(object):
 
     @wait(timeout=10)
     def wait_for_visible(self, selector, visible=True):
-        return self.find(selector).is_displayed()==visible
+        return self.find(selector).is_displayed() == visible
 
     def get_title(self):
         return self.title

@@ -5,10 +5,12 @@ SELENIUM_TEST_RUNNER = getattr(settings, 'SELENIUM_TEST_RUNNER',
                              'django_selenium.selenium_runner.SeleniumTestRunner')
 
 SELENIUM_TIMEOUT = getattr(settings, 'SELENIUM_TIMEOUT', 120)
+SELENIUM_IMPLICITLY_TIMEOUT = getattr(settings, 'SELENIUM_IMPLICITLY_TIMEOUT', 1)
 
 #------------------ LOCAL ----------------------------------
 SELENIUM_TESTSERVER_HOST = getattr(settings, 'SELENIUM_TESTSERVER_HOST', 'localhost')
 SELENIUM_TESTSERVER_PORT = getattr(settings, 'SELENIUM_TESTSERVER_PORT', 8011)
+
 SELENIUM_HOST = getattr(settings, 'SELENIUM_HOST', None)
 SELENIUM_PORT = getattr(settings, 'SELENIUM_PORT', 4444)
 

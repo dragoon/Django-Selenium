@@ -125,13 +125,14 @@ class MyDriver(object):
         elem.clear()
         elem.send_keys(text)
 
+
 class SeleniumTestCase(TransactionTestCase):
 
     def __getattribute__(self, name):
         try:
             attr = object.__getattribute__(self, name)
         except AttributeError:
-            attr = object.__getattribute__(self,'driver').__getattribute__(name)
+            attr = object.__getattribute__(self, 'driver').__getattribute__(name)
         return attr
 
     def _fixture_setup(self):
@@ -146,8 +147,7 @@ class SeleniumTestCase(TransactionTestCase):
         import socket
         socket.setdefaulttimeout(settings.SELENIUM_TIMEOUT)
         self.driver = MyDriver()
-        self.driver.implicitly_wait(settings.SELENIUM_TIMEOUT)
+        self.driver.implicitly_wait(settings.SELENIUM_IMPLICITLY_TIMEOUT)
 
     def tearDown(self):
         self.driver.quit()
-
